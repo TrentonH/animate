@@ -15,37 +15,62 @@ class George(unit):
 		super(George, self).__init__(x, y)
 		self.spritesheet = graphics.load("trainer.png")
 		self.mapping = {
-			"down" : [(0, 48 * i, 48 ,48) for i in range(4)],
-			"left" : [(48, 48 * i, 48 ,48) for i in range(4)],
-			"up"   : [(96, 48 * i, 48 ,48) for i in range(4)],
-			"right": [(144, 48 * i, 48 ,48) for i in range(4)]
+			"down" : [(46.75  * i , 0, 46.75 ,64) for i in range(4)],
+			"left" : [(46.75 * i , 65, 46.75 ,64) for i in range(4)],
+			"right": [(46.75 * i ,  128, 46.75 ,64) for i in range(4)],
+			"up"   : [(46.75 * i , 192, 46.75 ,64) for i in range(4)],
+			"s_down" : [(0, 0, 46.75 ,64) for i in range(4)],
+			"s_left" : [(0, 65, 46.75 ,64) for i in range(4)],
+			"s_right": [(0,  128, 46.75 ,64) for i in range(4)],
+			"s_up"   : [(0, 192, 46.75 ,64) for i in range(4)]
 		}
-		self.facing = "up"
-		self.speed = 0.2
+		self.facing = "down"
+		self.speed = 0.3
 
 	def update(self):
 		self.frame = (self.frame + self.speed) % 4
 
 	def render(self, surface):
 		surface.blit(self.spritesheet,
-		             (self.x, self.y, 48,48),
+		             (self.x, self.y, 46.75,64),
 		             self.mapping[self.facing][int(self.frame)])
 
 	def handler(self, event):
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
-				self.y -= 1
+				self.facing = "up"
+				self.y -= 2
 				if self.y < 0:
 					self.y = 0
 			elif event.key == pygame.K_DOWN:
-				self.y += 1
+				self.facing = "down"
+				self.y += 2
 				if self.y > (599 - 48):
 					self.y = 599 - 48
 			elif event.key == pygame.K_LEFT:
-				self.x -= 1
+				self.facing = "left"
+				self.x -= 2
 				if self.x < 0:
 					self.x = 0
 			elif event.key == pygame.K_RIGHT:
-				self.x += 1
+				self.facing = "right"
+				self.x += 2
+				if self.x > (799 - 48):
+					self.x = 799 - 48
+		if event.type == pygame.KEYUP:
+			if event.key == pygame.K_UP:
+				self.facing = "s_up"
+				if self.y < 0:
+					self.y = 0
+			elif event.key == pygame.K_DOWN:
+				self.facing = "s_down"
+				if self.y > (599 - 48):
+					self.y = 599 - 48
+			elif event.key == pygame.K_LEFT:
+				self.facing = "s_left"
+				if self.x < 0:
+					self.x = 0
+			elif event.key == pygame.K_RIGHT:
+				self.facing = "s_right"
 				if self.x > (799 - 48):
 					self.x = 799 - 48

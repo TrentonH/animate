@@ -15,12 +15,13 @@ import event
 graphics.background = graphics.load("background.jpg")
 
 george = units.George(25, 25)
-george2 = units.George(100, 25)
-george2.speed = 0.4
-george2.facing = "left"
+george.facing = "s_down"
+#george2 = units.George(100, 25)
+#george2.speed = 0.4
+#george2.facing = "left"
 
 graphics.register(george)
-graphics.register(george2)
+#graphics.register(george2)
 
 def quit(e):
 	global run
@@ -42,7 +43,7 @@ while (run):
 
 	event.update()
 	george.update()
-	george2.update()
+	#george2.update()
 	graphics.update()
 
 
