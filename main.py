@@ -12,7 +12,7 @@ import event
 
 # back = graphics.load("stars.png")
 
-graphics.background = graphics.load("background.jpg")
+graphics.background = graphics.load("Easy Maze.png")
 
 george = units.George(25, 25)
 george.facing = "s_down"

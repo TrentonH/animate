@@ -3,6 +3,9 @@ import pygame
 
 import graphics
 
+pygame.init()
+pygame.mixer.music.load('Footsteps-SoundBible.com-534261997.mp3')
+
 
 class unit(object):
 	def __init__(self, x, y):
@@ -37,27 +40,38 @@ class George(unit):
 
 	def handler(self, event):
 		if event.type == pygame.KEYDOWN:
+			if pygame.mixer.music.get_busy():
+				pass
+			else:
+				pygame.mixer.music.play(0)
+
+
 			if event.key == pygame.K_UP:
 				self.facing = "up"
 				self.y -= 2
+
 				if self.y < 0:
 					self.y = 0
 			elif event.key == pygame.K_DOWN:
 				self.facing = "down"
 				self.y += 2
+
 				if self.y > (599 - 48):
 					self.y = 599 - 48
 			elif event.key == pygame.K_LEFT:
 				self.facing = "left"
 				self.x -= 2
+
 				if self.x < 0:
 					self.x = 0
 			elif event.key == pygame.K_RIGHT:
 				self.facing = "right"
 				self.x += 2
+
 				if self.x > (799 - 48):
 					self.x = 799 - 48
 		if event.type == pygame.KEYUP:
+			pygame.mixer.music.stop()
 			if event.key == pygame.K_UP:
 				self.facing = "s_up"
 				if self.y < 0:
