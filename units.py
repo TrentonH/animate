@@ -7,6 +7,10 @@ pygame.init()
 pygame.mixer.music.load('Footsteps-SoundBible.com-534261997.mp3')
 
 
+pygame.mixer.Channel(0).play(pygame.mixer.Sound('Footsteps-SoundBible.com-534261997.mp3'))
+pygame.mixer.Channel(1).play(pygame.mixer.Sound('Spacetime.mp3'))
+
+
 class unit(object):
 	def __init__(self, x, y):
 			self.x = x
@@ -44,6 +48,7 @@ class George(unit):
 				pass
 			else:
 				pygame.mixer.music.play(0)
+				pygame.mixer.music.play(1)
 
 
 			if event.key == pygame.K_UP:

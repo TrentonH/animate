@@ -38,13 +38,20 @@ event.register(quit)
 clock = pygame.time.Clock()
 run = True
 frame = 0
+
 while (run):
+
+	if pygame.mixer.music.get_busy():
+		pass
+	else:
+		pygame.mixer.music.play(0)
+
+
 	clock.tick(30)
 
 	event.update()
 	george.update()
 	#george2.update()
 	graphics.update()
-
 
 pygame.display.quit()
