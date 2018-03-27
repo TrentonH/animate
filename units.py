@@ -4,11 +4,10 @@ import pygame
 import graphics
 
 pygame.init()
-pygame.mixer.music.load('Footsteps-SoundBible.com-534261997.mp3')
+space = pygame.mixer.music.load('Spacetime.mp3')
+pygame.mixer.music.play(-1)
 
-
-pygame.mixer.Channel(0).play(pygame.mixer.Sound('Footsteps-SoundBible.com-534261997.mp3'))
-pygame.mixer.Channel(1).play(pygame.mixer.Sound('Spacetime.mp3'))
+foot = pygame.mixer.Sound('Footsteps2.wav')
 
 
 class unit(object):
@@ -44,11 +43,7 @@ class George(unit):
 
 	def handler(self, event):
 		if event.type == pygame.KEYDOWN:
-			if pygame.mixer.music.get_busy():
-				pass
-			else:
-				pygame.mixer.music.play(0)
-				pygame.mixer.music.play(1)
+			foot.play()
 
 
 			if event.key == pygame.K_UP:
@@ -76,7 +71,7 @@ class George(unit):
 				if self.x > (799 - 48):
 					self.x = 799 - 48
 		if event.type == pygame.KEYUP:
-			pygame.mixer.music.stop()
+			foot.stop()
 			if event.key == pygame.K_UP:
 				self.facing = "s_up"
 				if self.y < 0:

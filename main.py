@@ -11,10 +11,12 @@ import event
 
 
 # back = graphics.load("stars.png")
+temp = graphics.load("Easy Maze.png")
+graphics.background =  pygame.transform.scale(temp, ( 1200,  600))
+#graphics.load("Easy Maze.png")
+#obstacle = pygame.transform.scale(graphics.background, ( 1200,  600))
 
-graphics.background = graphics.load("Easy Maze.png")
-
-george = units.George(25, 25)
+george = units.George(45, 375)
 george.facing = "s_down"
 #george2 = units.George(100, 25)
 #george2.speed = 0.4
@@ -40,11 +42,6 @@ run = True
 frame = 0
 
 while (run):
-
-	if pygame.mixer.music.get_busy():
-		pass
-	else:
-		pygame.mixer.music.play(0)
 
 
 	clock.tick(30)
